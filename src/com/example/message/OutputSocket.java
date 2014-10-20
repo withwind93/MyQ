@@ -38,6 +38,7 @@ public class OutputSocket extends Thread {
 		while (true) {
 			OutputStream os;
 			try {
+				while(socket.getSocket() == null) sleep(10);
 				os = socket.getSocket().getOutputStream();
 				while(messageRequest == null) sleep(10);
 				os.write(messageRequest.getBytes());

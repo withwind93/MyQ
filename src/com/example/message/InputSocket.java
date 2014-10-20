@@ -1,9 +1,5 @@
 package com.example.message;
 
-
-import com.example.model.ConnectResponse;
-import com.example.model.RegisterResponse;
-
 public class InputSocket extends Thread {
 	private MyQSocket socket = null;
 	private static InputSocket instance = null;
@@ -41,17 +37,25 @@ public class InputSocket extends Thread {
 			String string = new String(by, 0, length);
 			if (getCommand(string).equals("connect")) {
 				System.out.println("-----connect-----");
-				ConnectResponse connectResponse = (ConnectResponse) JSonUtils
-						.readValue(string, ConnectResponse.class);
-				if (connectResponse.getOk().equals("ok")) {
-					System.out.println("-----connect ok-----");
-					socket.setToken(connectResponse.getToken());
-					System.out.println("-----token : " + socket.getToken() + "-----");
-				}
+				Response.setConnect(string);
 			} else if (getCommand(string).equals("register")) {
 				System.out.println("-----register-----");
-				RegisterResponse registerResponse = JSonUtils.readValue(string, RegisterResponse.class);
-				System.out.println("ÐÂºÅÂë :" + registerResponse.getMessage());
+				Response.setRegisterResponse(string);
+			} else if (getCommand(string).equals("addbuddy")) {
+				System.out.println("-----addbuddy-----");
+				Response.setAddbuddyResponse(string);
+			} else if (getCommand(string).equals("deletebuddy")) {
+				System.out.println("-----deletebuddy-----");
+				Response.setDeletebuddyResponse(string);
+			} else if (getCommand(string).equals("getbuddylist")) {
+				System.out.println("-----getbuddylist-----");
+				Response.setGetbuddylistResponse(string);
+			} else if (getCommand(string).equals("login")) {
+				System.out.println("-----login-----");
+				Response.setLoginResponse(string);
+			}else if (getCommand(string).equals("send")){
+				System.out.println("-----receive-----");
+				Response.setRecvResponse(string);
 			}
 		}
 	}

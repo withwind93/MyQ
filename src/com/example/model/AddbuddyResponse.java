@@ -1,18 +1,18 @@
 package com.example.model;
 
-public class AddbuddyResponse extends MessageResponse{
-	private int sendid = 0;
-	private int buddyid = 0;
-	public int getSendid() {
-		return sendid;
+public class AddbuddyResponse extends MessageResponse {
+	private String ok = null;
+	private String message = null;
+	public String getOk() {
+		return ok;
 	}
-	public void setSendid(int sendid) {
-		this.sendid = sendid;
+	public void setOk(String ok) {
+		this.ok = ok;
 	}
-	public int getBuddyid() {
-		return buddyid;
+	public String getMessage() {
+		return message;
 	}
-	public void setBuddyid(int buddyid) {
-		this.buddyid = buddyid;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

@@ -20,7 +20,7 @@ public class MyQSocket {
 			try{
 				socket.connect(new InetSocketAddress("104.131.85.91",9999),10000);
 			}catch(SocketTimeoutException e){
-				//连接服务器超时
+				System.out.println("服务器连接超时！");
 				return ;
 			}
 		} catch (IOException e) {

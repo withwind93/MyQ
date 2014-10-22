@@ -52,10 +52,13 @@ public class InputSocket extends Thread {
 				Response.setGetbuddylistResponse(string);
 			} else if (getCommand(string).equals("login")) {
 				System.out.println("-----login-----");
+				System.out.println(string);
 				Response.setLoginResponse(string);
 			}else if (getCommand(string).equals("send")){
 				System.out.println("-----receive-----");
 				Response.setRecvResponse(string);
+			}else {
+				System.out.println("-----error-----");
 			}
 		}
 	}

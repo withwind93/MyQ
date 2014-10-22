@@ -58,18 +58,17 @@ public class SocketTest {
 								}
 							}
 						} else if (cmd2 == 2) {
-							System.out.print("请输入好友MyQ帐号：");
+							System.out.println("请输入好友MyQ帐号：");
 							int buddyid = 0;
-							buddyid = cin.nextInt();
 							Request.Addbuddy(sendid, buddyid);
 							if (Response.isokAddbuddy()) {
 								System.out.println("添加好友" + buddyid + "成功！");
 							}
 						} else if (cmd2 == 3) {
-							System.out.print("接收者的MyQ帐号：");
+							System.out.println("接收者的MyQ帐号：");
 							int recvid = 0;
 							recvid = cin.nextInt();
-							System.out.print("发送内容：");
+							System.out.println("发送内容：");
 							String message = null;
 							message = cin.next();
 							String msgtype = "single";

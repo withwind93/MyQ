@@ -1,9 +1,11 @@
 package com.example.message;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Scanner;
 
-import com.example.model.User;
+import com.example.model.BuddyEntity;
 
 public class SocketTest {
 
@@ -50,9 +52,9 @@ public class SocketTest {
 							break;
 						} else if (cmd2 == 1) {
 							Request.Getbuddylist(sendid);
-							List<User> list = Response.getGetbuddylist();
+							List<BuddyEntity> list = Response.getGetbuddylist();
 							if (list != null) {
-								for (User user : list) {
+								for (BuddyEntity user : list) {
 									System.out.println(user.getId() + " : "
 											+ user.getName());
 								}
@@ -71,6 +73,12 @@ public class SocketTest {
 							System.out.println("·¢ËÍÄÚÈÝ£º");
 							String message = null;
 							message = cin.next();
+							try {
+								message = URLEncoder.encode(message, "utf-8");
+							} catch (UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							String msgtype = "single";
 							Request.Send(sendid, recvid, msgtype, message);
 						} else if (cmd2 == 4) {

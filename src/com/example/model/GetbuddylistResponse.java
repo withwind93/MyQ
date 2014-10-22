@@ -3,12 +3,12 @@ package com.example.model;
 import java.util.List;
 
 public class GetbuddylistResponse extends MessageResponse{
-	private List<User> list = null;
+	private List<BuddyEntity> list = null;
 	
-	public List<User> getList() {
+	public List<BuddyEntity> getList() {
 		return list;
 	}
-	public void setList(List<User> list) {
+	public void setList(List<BuddyEntity> list) {
 		this.list = list;
 	}
 }

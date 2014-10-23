@@ -1,8 +1,12 @@
 package com.example.message;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import com.example.model.AddbuddyRequest;
 import com.example.model.DeletebuddyRequest;
 import com.example.model.GetbuddylistRequest;
+import com.example.model.GettalkmessageRequest;
 import com.example.model.LoginRequest;
 import com.example.model.LogoutRequest;
 import com.example.model.RegisterRequest;
@@ -57,5 +61,12 @@ public class Request {
 		GetbuddylistRequest getbuddylistRequest = new GetbuddylistRequest();
 		getbuddylistRequest.setSendid(sendid);
 		OutputSocket.getInstance().setMessageRequest(getbuddylistRequest);
+	}
+
+	public static void Gettalkmessage(int sendid, int recvid) {
+		GettalkmessageRequest gettalkmessageRequest = new GettalkmessageRequest();
+		gettalkmessageRequest.setSendid(sendid);
+		gettalkmessageRequest.setRecvid(recvid);
+		OutputSocket.getInstance().setMessageRequest(gettalkmessageRequest);
 	}
 }

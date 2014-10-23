@@ -1,5 +1,8 @@
 package com.example.model;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 public class SendRequest extends MessageRequest{
 	private int sendid = 0;
 	private int recvid = 0;
@@ -27,9 +30,21 @@ public class SendRequest extends MessageRequest{
 		this.msgtype = msgtype;
 	}
 	public String getMessage() {
+		try {
+			message = URLDecoder.decode(message, "utf-8");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return message;
 	}
 	public void setMessage(String message) {
+		try {
+			message = URLEncoder.encode(message, "utf-8");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.message = message;
 	}
 }

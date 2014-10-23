@@ -57,6 +57,9 @@ public class InputSocket extends Thread {
 			}else if (getCommand(string).equals("send")){
 				System.out.println("-----receive-----");
 				Response.setRecvResponse(string);
+			}else if (getCommand(string).equals("gettalkmessage")){
+				System.out.println("-----gettalkmessage-----");
+				Response.setGettalkmessageResponse(string);
 			}else {
 				System.out.println("-----error-----");
 			}

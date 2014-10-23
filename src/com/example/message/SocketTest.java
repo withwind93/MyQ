@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.example.model.BuddyEntity;
+import com.example.model.ChatMsgEntity;
 
 public class SocketTest {
 
@@ -43,8 +44,8 @@ public class SocketTest {
 					System.out.println("你好 ," + sendid + "!");
 					while (true) {
 						System.out.println("--------MyQ实时聊天系统--------\n"
-								+ "输入 1 ：获取好友列表\n输出 2 ：增加好友\n"
-								+ "输入 3：发送消息\n输入 4：删除好友\n输入 0：注销");
+								+ "输入 1 ：获取好友列表\n输入 2 ：增加好友\n"
+								+ "输入 3：发送消息\n输入 4：删除好友\n输入 5：获取聊天记录\n输入 0：注销");
 						int cmd2 = 0;
 						cmd2 = cin.nextInt();
 						if (cmd2 == 0) {
@@ -73,21 +74,27 @@ public class SocketTest {
 							System.out.println("发送内容：");
 							String message = null;
 							message = cin.next();
-							try {
-								message = URLEncoder.encode(message, "utf-8");
-							} catch (UnsupportedEncodingException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 							String msgtype = "single";
 							Request.Send(sendid, recvid, msgtype, message);
 						} else if (cmd2 == 4) {
-							System.out.print("请输入要删除的好友MyQ帐号：");
+							System.out.println("请输入要删除的好友MyQ帐号：");
 							int buddyid = 0;
 							buddyid = cin.nextInt();
 							Request.Deletebuddy(sendid, buddyid);
 							if (Response.isokAddbuddy()) {
 								System.out.println("删除好友" + buddyid + "成功！");
+							}
+						} else if(cmd2 == 5) {
+							System.out.println("请输入聊天记录的好友MyQ帐号：");
+							int recvid = 0;
+							recvid = cin.nextInt();
+							Request.Gettalkmessage(sendid, recvid);
+							List<ChatMsgEntity> list = Response.getGettalkmessagelist();
+							if (list != null) {
+								for (ChatMsgEntity msg : list) {
+									System.out.println(msg.getTime() + " : "
+											+ msg.getMessage());
+								}
 							}
 						}
 					}

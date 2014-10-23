@@ -7,9 +7,12 @@ import java.util.List;
 
 import com.example.model.AddbuddyResponse;
 import com.example.model.BuddyEntity;
+import com.example.model.ChatMsgEntity;
 import com.example.model.ConnectResponse;
 import com.example.model.DeletebuddyResponse;
 import com.example.model.GetbuddylistResponse;
+import com.example.model.GettalkmessageRequest;
+import com.example.model.GettalkmessageResponse;
 import com.example.model.LoginResponse;
 import com.example.model.RegisterResponse;
 import com.example.model.SendRequest;
@@ -220,4 +223,37 @@ public class Response {
 
 		recvResponse = null;
 	}
+
+	private static GettalkmessageResponse gettalkmessageResponse = null;
+
+	public static void setGettalkmessageResponse(String string) {
+		while (gettalkmessageResponse != null) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		gettalkmessageResponse = JSonUtils.readValue(string,
+				GettalkmessageResponse.class);
+	}
+
+	public static GettalkmessageResponse getGettalkmessageResponse() {
+		while (gettalkmessageResponse == null) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		GettalkmessageResponse tmpGettalkmessageRespons = gettalkmessageResponse;
+		gettalkmessageResponse = null;
+		return tmpGettalkmessageRespons;
+	}
+	public static List<ChatMsgEntity> getGettalkmessagelist() {
+		return getGettalkmessageResponse().getList();
+	}
+
 }
